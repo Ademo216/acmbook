@@ -1,2 +1,11 @@
 <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<h2>Affichage des seeds du model Day :</h2>
+
+<% @days.each do |day| %>
+        <p>Nom du jour : <%= day.name %></p>
+<% end %>
+
+<p>----------------------------------------------------------------------</p>
+
+<h2>Affichage des seeds du model Room :</h2>
