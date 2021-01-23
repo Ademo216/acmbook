@@ -9,3 +9,12 @@
 <p>----------------------------------------------------------------------</p>
 
 <h2>Affichage des seeds du model Room :</h2>
+
+<% @rooms.each do |room| %>
+        <p>Nom de la salle : <%= room.name %></p>
+        <p>Capacité de la salle : <%= room.capacity_room %></p>
+<% end %>
+
+<p>----------------------------------------------------------------------</p>
+
+<h2>Affichage des seeds du model Prayers :</h2>
