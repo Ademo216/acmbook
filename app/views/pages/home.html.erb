@@ -18,3 +18,12 @@
 <p>----------------------------------------------------------------------</p>
 
 <h2>Affichage des seeds du model Prayers :</h2>
+
+<% @prayers.each do |prayer| %>
+        <p>Nom de la prière : <%= prayer.name %></p>
+        <p>Capacité de la prière : <%= prayer.capacity_prayer %></p>
+        <p>Jour de la prière : <%= prayer.day.name%></p>
+        <p>Salle de la prière : <%= prayer.room.name %></p>
+
+<p>----------------------------------------</p>
+<% end %>
