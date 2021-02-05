@@ -1,3 +1,5 @@
+require 'date'
+
 class BookingsController < ApplicationController
   def new
     @booking = Booking.new
@@ -5,10 +7,6 @@ class BookingsController < ApplicationController
 
   def create
 raise
-  end
-
-  def monday
-    
   end
   
 end
