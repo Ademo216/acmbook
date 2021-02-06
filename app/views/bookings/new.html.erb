@@ -11,13 +11,9 @@
 
 <%= simple_form_for(@booking) do |f| %>
 
-  <div class="date-today">
-    <%= f.input :date, as: :radio_buttons, collection: [Date.today] %>
-  </div>
+  <span id="date-today"><%= f.input :date, as: :radio_buttons, collection: [Date.today] %></span>
   
-  <div class="date-tomorrow">
-    <%= f.input :date, as: :radio_buttons, collection: [Date.today + 1] %>
-  </div>
+  <span id="date-tomorrow"><%= f.input :date, as: :radio_buttons, collection: [Date.today + 1] %></span>
 
 <%# button => actif homme => Doit montrer les prayer hommes %>
 
@@ -30,20 +26,20 @@
     <% end %>
   </div>
 
-  <div class="prayer-femme-today">
+  <div class="prayer-femme-today" hidden>
     <%= f.fields_for :prayers do |fff| %>
     <%= fff.input :prayers_femme, as: :radio_buttons, collection: Day.where(name: Date.today.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
     <% end %>
   </div>
 
-    <div class="prayer-homme-tomorrow">
+    <div class="prayer-homme-tomorrow" hidden>
     <%= f.fields_for :prayers do |fff| %>
     <% tomorrow = Date.today + 1 %>
     <%= fff.input :prayers_homme, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.first) %>
     <% end %>
   </div>
 
-  <div class="prayer-femme-tomorrow">
+  <div class="prayer-femme-tomorrow" hidden>
     <%= f.fields_for :prayers do |fff| %>
     <% tomorrow = Date.today + 1 %>
     <%= fff.input :prayers_femme, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
