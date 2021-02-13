@@ -16,6 +16,7 @@ puts "Cleaning database..."
 Day.destroy_all
 Room.destroy_all
 Prayer.destroy_all
+User.destroy_all
 
 puts "Cleaning database => OK"
 
