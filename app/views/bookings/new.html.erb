@@ -2,7 +2,6 @@
   <h1>ACMBOOKING</h1>
   <h2>RÉSERVER VOTRE PLACE DE PRIÈRE</h2>
   <h4>La mosquée est ouverte</h4>
-
   <a href="https://www.mawaqit.net/fr/mosquee-de-bonneville" target="_blank">Consulter les horaires de prières</a>
 </div>
 
@@ -27,56 +26,38 @@
 
 </div>
 
-  <%# <div class="button-room">
-    <button id="button_room_homme" class="btn btn-primary btn-lg">HOMME</button>
-  </div>
-
-  <div class="button-room">
-    <button id="button_room_femme" class="btn btn-primary btn-lg">FEMME</button>
-  </div> %>
-
-
 <div class="prayer-select">
   <%= simple_form_for(@booking) do |f| %>
 
-  <%# <span id="date-today"><%= f.input :date, as: :radio_buttons, collection: [Date.today] %'></span>
-  
-  <span id="date-tomorrow"><%= f.input :date, as: :radio_buttons, collection: [Date.today + 1] %'></span> %>
-  
-  <%# <% date_array = [Date.today, Date.today + 1] %'> %>
-  <%# <span id="date-today"><%= f.input :date, collection: date_array, selected: date_array[0] %'></span> %>
-  <%# <%= f.input :age, collection: 18..60, prompt: "Select your age", selected: 21 %'> %>
-  <%# <span id="date-tomorrow"><%= f.input :date, as: :radio_buttons, collection: [Date.today + 1] %'></span> %>
+    <div class="prayer-homme-today" hidden>
+      <%= f.fields_for :prayers do |fff| %>
+        <%= fff.input :prayers_homme_today, as: :radio_buttons, collection: Day.where(name: Date.today.strftime("%A")).first.prayers.where(room_id: Room.all.first) %>
+      <% end %>
+    </div>
 
-  <div class="prayer-homme-today" hidden>
-    <%= f.fields_for :prayers do |fff| %>
-    <%= fff.input :prayers_homme_today, as: :radio_buttons, collection: Day.where(name: Date.today.strftime("%A")).first.prayers.where(room_id: Room.all.first) %>
-    <% end %>
-  </div>
-
-  <div class="prayer-femme-today" hidden>
-    <%= f.fields_for :prayers do |fff| %>
-    <%= fff.input :prayers_femme_today, as: :radio_buttons, collection: Day.where(name: Date.today.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
-    <% end %>
-  </div>
+    <div class="prayer-femme-today" hidden>
+      <%= f.fields_for :prayers do |fff| %>
+        <%= fff.input :prayers_femme_today, as: :radio_buttons, collection: Day.where(name: Date.today.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
+      <% end %>
+    </div>
 
     <div class="prayer-homme-tomorrow" hidden>
-    <%= f.fields_for :prayers do |fff| %>
-    <% tomorrow = Date.today + 1 %>
-    <%= fff.input :prayers_homme_tomorrow, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.first) %>
-    <% end %>
-  </div>
+      <%= f.fields_for :prayers do |fff| %>
+        <% tomorrow = Date.today + 1 %>
+        <%= fff.input :prayers_homme_tomorrow, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.first) %>
+      <% end %>
+    </div>
 
-  <div class="prayer-femme-tomorrow" hidden>
-    <%= f.fields_for :prayers do |fff| %>
-    <% tomorrow = Date.today + 1 %>
-    <%= fff.input :prayers_femme_tomorrow, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
-    <% end %>
-  </div>
+    <div class="prayer-femme-tomorrow" hidden>
+      <%= f.fields_for :prayers do |fff| %>
+        <% tomorrow = Date.today + 1 %>
+        <%= fff.input :prayers_femme_tomorrow, as: :radio_buttons, collection: Day.where(name: tomorrow.strftime("%A")).first.prayers.where(room_id: Room.all.last) %>
+      <% end %>
+    </div>
 
-
-  <div class="button-submit" hidden><%= f.submit value: "Réserver votre prière" %> </div>
-<% end %>
+    <div class="button-submit" hidden><%= f.submit value: "Réserver votre prière" %> </div>
+    
+  <% end %>
 </div>
 
 <script src="../../javascript/packs/application.js"></script>
