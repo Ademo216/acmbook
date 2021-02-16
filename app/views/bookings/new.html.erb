@@ -55,6 +55,13 @@
       <% end %>
     </div>
 
+    <%= f.fields_for :users do |ff| %>
+      <%= ff.input :first_name %>
+      <%= ff.input :last_name %>
+      <%= ff.input :email %>
+      <%= ff.input :phone_number %>
+    <% end %>
+
     <div class="button-submit" hidden><%= f.submit value: "Réserver votre prière" %> </div>
     
   <% end %>

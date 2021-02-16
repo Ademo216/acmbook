@@ -25,12 +25,19 @@ class BookingsController < ApplicationController
     prayer = Prayer.find(@prayer_id)
     @booking.prayer = prayer
     @booking.date = Date.today
-    if @booking.save
-      @booking.prayer.capacity_prayer -= 1
-      @booking.prayer.save
-      redirect_to booking_path(@booking)
+    new_user = params[:booking][:users]
+    user = User.new(first_name: new_user[:first_name], last_name: new_user[:last_name], email: new_user[:email], phone_number: new_user[:phone_number])
+    if !(@booking.prayer.capacity_prayer < 1) && user.save
+      @booking.user = user
+      if @booking.save
+        @booking.prayer.capacity_prayer -= 1
+        @booking.prayer.save
+        redirect_to booking_path(@booking)
+      else
+        render "new", alert: "HELLOO"
+      end
     else
-      render "new"
+      render "new", alert: "HELLOO 22222"
     end
   end
 

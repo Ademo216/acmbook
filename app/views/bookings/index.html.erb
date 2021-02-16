@@ -8,9 +8,10 @@
         <p>Email : <%= booking.user[:email] %'></p>
         <p>Téléphone : <%= booking.user[:phone_number] %'></p>
         <p>Genre : <%= booking.user[:genre] %'></p> %>
-        <p>Nom de la prière : <%= booking.prayer[:name] %></p>
-        <p>Salle de la prière : <%= booking.prayer.room[:name] %></p>
-        <p>Capacité de la prière : <%= booking.prayer[:capacity_prayer] %></p>
-        <p>Date de la prière : <%= booking[:date] %></p>
+        <p>Nom User : <%= booking.user.first_name %></p>
+        <p>Nom de la prière : <%= booking.prayer.name %></p>
+        <p>Salle de la prière : <%= booking.prayer.room.name %></p>
+        <p>Capacité de la prière : <%= booking.prayer.capacity_prayer %></p>
+        <p>Date de la prière : <%= booking.date %></p>
     </div>
 <% end %>
