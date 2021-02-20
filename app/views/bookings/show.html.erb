@@ -1,12 +1,18 @@
-<h1>Récapitulatif de votre réservation de prière <%= @booking.prayer[:name] %></h1>
+<h1>Récapitulatif de votre réservation de prière <%= @booking.user.first_name %></h1>
 
 <div>
     <p>----------------------------------------------------------</p>
-    <p>Nom User : <%= @booking.user.first_name %></p>
+    <h3>Informations personnelles :</h3>
+    <p>Prénom : <%= @booking.user.first_name %></p>
+    <p>Nom : <%= @booking.user.last_name %></p>
+    <p>Email : <%= @booking.user.email %></p>
+    <p>Téléphone : <%= @booking.user.phone_number %></p>
+    <h3>Informations sur la prière :</h3>
     <p>Nom de la prière : <%= @booking.prayer.name %></p>
     <p>Salle de la prière : <%= @booking.prayer.room.name %></p>
-    <p>Capacité de la prière : <%= @booking.prayer.capacity_prayer %></p>
-    <p>Date de la prière : <%= @booking.date %></p>
+    <p>Places restantes : <%= @booking.prayer.capacity_prayer %></p>
+    <p>Jour de la prière : <%= @booking.prayer.day.name %></p>
+    <p>Date de la réservation : <%= @booking.date %></p>
 </div>
 
 <%= link_to "Nouvelle résérvation de prière", new_booking_path, class: "btn-flat" %>
